@@ -6,6 +6,8 @@ const axiosInstance = axios.create({
   timeout: 10000, // Request timeout in milliseconds
   headers: {
     'Content-Type': 'application/json',
+    'ngrok-skip-browser-warning': 'true',
+    'ark-plugin-secret-key':'b29c957d8fd7dbfbae08fd8d9c143e3716f9af9b33e80b44deb7deaf41289e04'
     // Add any default headers here
   },
 });
