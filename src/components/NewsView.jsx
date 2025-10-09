@@ -148,7 +148,7 @@ const NewsView = () => {
               title={item.title}
               date={item.date}
               description={item.description}
-              likes={typeof item.likes === 'string' ? item.likes : item.likesCount}
+              likes={typeof item.likes === 'string' ? item.npm  : item.likesCount}
               saves={typeof item.saves === 'string' ? item.saves : item.pinCount}
               imageUrl={item.imageUrl || item.files?.[0]?.url || 'https://placehold.co/600x400'}
               onClick={() => {

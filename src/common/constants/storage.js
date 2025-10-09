@@ -14,4 +14,5 @@ export const APP_LOGIN_TOKEN = 'app-x-token';
 export const getUserToken = async () => {
   const token = localStorage.getItem(APP_LOGIN_TOKEN);
   window._token = token;
+  return token;
 };
