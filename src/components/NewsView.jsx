@@ -15,7 +15,7 @@ const NewsView = () => {
   const [selectedOrg, setSelectedOrg] = useState("");
   const [organizationList, setOrganizationList] = useState([]);
   const [userList, setUserList] = useState([]);
-  const [trendingLoaded, setTrendingLoaded] = useState(false);
+
   const [isFetchingOrg, setIsFetchingOrg] = useState(false);
   const [isFetchingTrending, setIsFetchingTrending] = useState(true);
 
@@ -36,12 +36,10 @@ const NewsView = () => {
       console.log("Trending news:", trending.data.myFeed);
       setUserList(trending.data.users || []);
       setOrganizationList(trending.data.organizations || []);
-      setItems(trending.data.myFeed || []);
 
-      setTrendingLoaded(true);
+      setItems(trending.data.myFeed || []);
     } catch (error) {
       console.error("Error fetching trending news:", error);
-      setTrendingLoaded(true);
     } finally {
       setIsFetchingTrending(false);
     }
