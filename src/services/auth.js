@@ -1,4 +1,4 @@
-import axiosInstance from '../api/axiosInstance';
+import axiosInstance from '../api/axiosinstance';
 import { AUTH_LOGIN } from '../common/constants/apiUrls';
 
 export async function login(username, password) {
