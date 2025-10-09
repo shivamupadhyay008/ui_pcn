@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 // Create an axios instance with custom configuration
-const client = axios.create({
-  baseURL: 'https://api.example.com', // Replace with your API base URL
+const axiosInstance = axios.create({
+  baseURL: import.meta.env.VITE_API_BASE_URL || 'https://api.example.com', // Replace with your API base URL
   timeout: 10000, // Request timeout in milliseconds
   headers: {
     'Content-Type': 'application/json',
@@ -11,7 +11,7 @@ const client = axios.create({
 });
 
 // Request interceptor for adding auth tokens, etc.
-client.interceptors.request.use(
+axiosInstance.interceptors.request.use(
   (config) => {
     // Add authorization token if available
     // const token = localStorage.getItem('token');
@@ -26,7 +26,7 @@ client.interceptors.request.use(
 );
 
 // Response interceptor for handling responses and errors globally
-client.interceptors.response.use(
+axiosInstance.interceptors.response.use(
   (response) => {
     return response;
   },
@@ -39,4 +39,4 @@ client.interceptors.response.use(
   }
 );
 
-export default client;
+export default axiosInstance;
