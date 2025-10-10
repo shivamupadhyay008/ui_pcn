@@ -33,7 +33,6 @@ const NewsView = () => {
     try {
       setIsFetchingTrending(true);
       const trending = await getTrendingNews();
-      console.log("Trending news:", trending.data.myFeed);
       setUserList(trending.data.users || []);
       setOrganizationList(trending.data.organizations || []);
 

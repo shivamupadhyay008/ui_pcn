@@ -16,7 +16,7 @@ const Card = ({
   id, // assuming news item id
   organizationId,
 }) => {
-  console.log(initialIsLiked);
+
   
   const [openModal, setOpenModal] = useState(false);
   const [pendingAction, setPendingAction] = useState(null);
@@ -37,7 +37,6 @@ const Card = ({
       let response;
       switch (action) {
         case 'like':
-          console.log('Liking news item:', id, 'Current isLiked:', isLiked);
           response = await (isLiked ? unlikeNews(organizationId, id) : likeNews(organizationId, id));
           if (response.success) {
             if (!isLiked) {

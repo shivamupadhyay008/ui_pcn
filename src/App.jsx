@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useLayoutEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
 import NewsView from "./components/NewsView";
 import LoginModal from "./auth/login";
@@ -19,6 +19,29 @@ function App() {
   const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
+
+useLayoutEffect(() => {
+
+  const handleMessage = (event) => {
+    
+    if (event.data && event.data.pluginSecretKey) {
+      setPluginSecretKey(event.data.pluginSecretKey);
+      if (event.data.authToken) {
+        setAuthToken(event.data.authToken);
+      }
+      setIsAuthenticated(true);
+    } 
+  };
+
+  window.addEventListener('message', handleMessage);
+  
+
+  return () => {
+    window.removeEventListener('message', handleMessage);
+
+  };
+}, []);
+
   useEffect(() => {
     // Check for standalone login token on app load
     const checkStandaloneAuth = async () => {
@@ -31,18 +54,6 @@ function App() {
     checkStandaloneAuth();
   }, []);
 
-  useEffect(() => {
-    const handleMessage = (event) => {
-      if (event.data && event.data.pluginSecretKey) {
-        setPluginSecretKey(event.data.pluginSecretKey);
-        setIsAuthenticated(true);
-      }
-    };
-
-    window.addEventListener('message', handleMessage);
-
-    return () => window.removeEventListener('message', handleMessage);
-  }, []);
 
   useEffect(() => {
     const handleAuthError = () => {
@@ -60,14 +71,14 @@ function App() {
         ARK Connect News
       </h1>
 
+      {isAuthenticated ? (
         <Routes>
           <Route path="/" element={<NewsView />} />
           <Route path="/login" element={<LoginModal open={true} onClose={() => navigate("/")} />} />
         </Routes>
-      {/* {isAuthenticated ? (
       ) : (
         <UnauthenticatedMessage />
-      )} */}
+      )}
     </div>
   );
 }
