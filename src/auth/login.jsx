@@ -197,9 +197,9 @@ export default function LoginModal({ open, onClose,actionCb=()=>{ } }) {
               {isLoading ? "Logging in..." : "Login"}
             </button>
 
-            <button type="button" className={loginModalStyles.registerButton}>
+            <a href="https://play.google.com/store/apps/details?id=com.thearkconnect.social.prod&pcampaignid=web_share" target="_blank" type="button" className={loginModalStyles.registerButton}>
               Register
-            </button>
+            </a>
           </div>
         </form>
 
