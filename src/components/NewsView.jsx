@@ -145,11 +145,15 @@ const NewsView = () => {
           {items?.map((item) => (
             <Card
               key={item.id}
+              id={item.id}
+              organizationId={item?.organizationId||""}
               title={item.title}
               date={item.date}
               description={item.description}
               likes={typeof item.likes === 'string' ? item.likes  : item.likesCount}
               saves={typeof item.saves === 'string' ? item.saves : item.pinCount}
+              isLiked={item.reactType||false}
+              isSaved={item.saved ? true : false} // assume if saved flag
               imageUrl={item.imageUrl || item.files?.[0]?.url || 'https://placehold.co/600x400'}
               onClick={() => {
                 setSelectedItem(item);

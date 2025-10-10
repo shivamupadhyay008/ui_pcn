@@ -4,10 +4,11 @@ import { COLORS } from "../common/constants/colors";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 import { login } from "../services/auth";
 import { isValidEmail, isValidPassword } from "../common/constants/storage";
+import { setAuthToken } from "../api/axiosinstance";
 
 export const APP_LOGIN_TOKEN = 'app-x-token';
 
-export default function LoginModal({ open, onClose }) {
+export default function LoginModal({ open, onClose,actionCb=()=>{ } }) {
   const [form, setForm] = useState({
     values: { email: "", password: "" },
     errors: { email: "", password: "", global: "" },
@@ -75,7 +76,9 @@ export default function LoginModal({ open, onClose }) {
         alert("Login successful!");
         localStorage.setItem(APP_LOGIN_TOKEN, res?.token);
         window._token = res?.token;
+        setAuthToken(res?.token);
         handleClose();
+        actionCb();
       } else {
         setForm((prev) => ({
           ...prev,

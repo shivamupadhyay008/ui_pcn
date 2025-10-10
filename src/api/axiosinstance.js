@@ -1,13 +1,13 @@
 import axios from 'axios';
 
 // Global variables for tokens and keys
-// let authToken = null;
-let pluginSecretKey = null;
+let authToken = null;
+let pluginSecretKey = 'b29c957d8fd7dbfbae08fd8d9c143e3716f9af9b33e80b44deb7deaf41289e04';
 
 // Functions to set the tokens and keys
-// export const setAuthToken = (token) => {
-//   authToken = token;
-// };
+export const setAuthToken = (token) => {
+  authToken = token;
+};
 
 export const setPluginSecretKey = (key) => {
   pluginSecretKey = key;
@@ -28,9 +28,9 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
   (config) => {
     // Add authorization token if available
-    // if (authToken) {
-    //   config.headers.Authorization = `Bearer ${authToken}`;
-    // }
+    if (authToken) {
+      config.headers.Authorization = `Bearer ${authToken}`;
+    }
     // Add plugin secret key if available
     if (pluginSecretKey) {
       config.headers['ark-plugin-secret-key'] = pluginSecretKey;

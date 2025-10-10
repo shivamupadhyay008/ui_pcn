@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
 import NewsView from "./components/NewsView";
 import LoginModal from "./auth/login";
-import {  setPluginSecretKey } from "./api/axiosinstance";
+import { setAuthToken, setPluginSecretKey } from "./api/axiosinstance";
+import { getUserToken } from "./common/constants/storage";
 
 function UnauthenticatedMessage() {
   return (
@@ -17,6 +18,18 @@ function UnauthenticatedMessage() {
 function App() {
   const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    // Check for standalone login token on app load
+    const checkStandaloneAuth = async () => {
+      const token = await getUserToken();
+      if (token) {
+        setAuthToken(token);
+      }
+    };
+
+    checkStandaloneAuth();
+  }, []);
 
   useEffect(() => {
     const handleMessage = (event) => {
@@ -47,14 +60,14 @@ function App() {
         ARK Connect News
       </h1>
 
-      {isAuthenticated ? (
         <Routes>
           <Route path="/" element={<NewsView />} />
           <Route path="/login" element={<LoginModal open={true} onClose={() => navigate("/")} />} />
         </Routes>
+      {/* {isAuthenticated ? (
       ) : (
         <UnauthenticatedMessage />
-      )}
+      )} */}
     </div>
   );
 }
