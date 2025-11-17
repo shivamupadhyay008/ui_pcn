@@ -44,21 +44,21 @@ useLayoutEffect(() => {
   };
 }, []);
 
-  useEffect(() => {
-    // Check for standalone login token and plugin secret key on app load
-    const checkStandaloneAuth = async () => {
-      const token = await getUserToken();
-      if (token) {
-        setAuthToken(token);
-      }
-      const pluginKey = await getPluginSecretKey();
-      if (pluginKey) {
-        setPluginSecretKey(pluginKey);
-      }
-    };
+  // useEffect(() => {
+  //   // Check for standalone login token and plugin secret key on app load
+  //   const checkStandaloneAuth = async () => {
+  //     const token = await getUserToken();
+  //     if (token) {
+  //       setAuthToken(token);
+  //     }
+  //     const pluginKey = await getPluginSecretKey();
+  //     if (pluginKey) {
+  //       setPluginSecretKey(pluginKey);
+  //     }
+  //   };
 
-    checkStandaloneAuth();
-  }, []);
+  //   checkStandaloneAuth();
+  // }, []);
 
 
   useEffect(() => {
