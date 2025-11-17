@@ -28,13 +28,25 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
   (config) => {
     // Add authorization token if available
+    // if (authToken) {
+      // config.headers.Authorization = `Bearer txlnfypcki`;
+    // }
+    
     if (authToken) {
-      config.headers.Authorization = `Bearer ${authToken}`;
+      config.headers['ark-plugin-jwt-key'] = authToken;
     }
-    // Add plugin secret key if available
+    // Add plugin secret key (API key) if available
     if (pluginSecretKey) {
-      config.headers['ark-plugin-secret-key'] = pluginSecretKey;
+      config.headers['ark-plugin-api-key'] = pluginSecretKey;
     }
+
+    // Add request timestamp for debugging
+    config.headers['X-Request-Time'] = new Date().toISOString();
+    // config.headers['ark-plugin-jwt-key'] = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imdva3Vsc2FudGhhbmFrcmlzaG5hbjk5NjVAZ21haWwuY29tIiwicGhvbmVudW1iZXIiOiI4Mjk4MjkyOTkyMiIsIm5hbWUiOiJHb2t1bGEgS3Jpc2huYW4iLCJpYXQiOjE3NjE4MTc5MDd9.0MWyobpptR_pqzIrojBaXxXxZcDvpwRGfMG-AWDGqPk';
+    // Add plugin secret key if available
+    // if (pluginSecretKey) {
+      // config.headers['ark-plugin-api-key'] = 'd88e8eaa63';
+    // }
     return config;
   },
   (error) => {

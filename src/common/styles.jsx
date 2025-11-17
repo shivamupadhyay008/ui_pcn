@@ -1,4 +1,4 @@
-import { COLORS } from "./constants/colors";
+import { ArkColors } from "./constants/colors";
 
 export const loginModalStyles = {
   backdrop:
@@ -14,9 +14,9 @@ export const loginModalStyles = {
   emailInput:
     "mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 outline-none focus:ring-2",
 
-  submitButton: `py-2 px-6 rounded-lg disabled:opacity-50 ${COLORS.primary}`,
+  submitButton: `py-2 px-6 rounded-lg disabled:opacity-50 bg-blue-600 text-white`,
 
-  registerButton: `text-sm ${COLORS.textLink}`,
+  registerButton: `text-sm text-blue-600`,
 
   closeButton:
     "absolute top-3 right-3 text-gray-500 hover:text-gray-700 font-bold text-xl",

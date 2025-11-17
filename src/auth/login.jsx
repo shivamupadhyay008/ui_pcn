@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { loginModalStyles } from "../common/styles";
-import { COLORS } from "../common/constants/colors";
+import { ArkColors } from "../common/constants/colors";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 import { login } from "../services/auth";
 
@@ -167,7 +167,7 @@ export default function LoginModal({ open, onClose, actionCb = () => {} }) {
           {/* Email */}
           <div>
             <label
-              className={`block text-sm font-medium ${COLORS.textPrimary}`}
+              className="block text-sm font-medium text-gray-700"
             >
               <span className="text-red-500">*</span> Email
             </label>
@@ -180,11 +180,6 @@ export default function LoginModal({ open, onClose, actionCb = () => {} }) {
               className={loginModalStyles.emailInput}
               placeholder="Enter your email"
               autoComplete="username"
-              style={{
-                "--tw-ring-color": COLORS.ark_primary_color,
-
-                "--tw-border-color": COLORS.ark_primary_color,
-              }}
             />
 
             {form.errors.email && (
@@ -195,7 +190,7 @@ export default function LoginModal({ open, onClose, actionCb = () => {} }) {
           {/* Password */}
           <div className="relative">
             <label
-              className={`block text-sm font-medium ${COLORS.textPrimary}`}
+              className="block text-sm font-medium text-gray-700"
             >
               <span className="text-red-500">*</span> Password
             </label>
@@ -208,11 +203,6 @@ export default function LoginModal({ open, onClose, actionCb = () => {} }) {
               onChange={(e) => handleChange("password", e.target.value)}
               className={`${loginModalStyles.emailInput} pr-10`}
               autoComplete="current-password"
-              style={{
-                "--tw-ring-color": COLORS.ark_primary_color,
-
-                "--tw-border-color": COLORS.ark_primary_color,
-              }}
             />
 
             {form.errors.password && (
@@ -240,7 +230,6 @@ export default function LoginModal({ open, onClose, actionCb = () => {} }) {
             <button
               type="submit"
               disabled={isLoading}
-              style={{ backgroundColor: COLORS.ark_primary_color }}
               className={loginModalStyles.submitButton}
             >
               {isLoading ? "Logging in..." : "Login"}
