@@ -8,11 +8,21 @@ let pluginSecretKey = null;
 export const setAuthToken = (token) => {
   console.log("Setting auth token:", token);
   authToken = token;
+  if (token) {
+    localStorage.setItem('app-x-token', token);
+  } else {
+    localStorage.removeItem('app-x-token');
+  }
 };
 
 export const setPluginSecretKey = (key) => {
-  console.log("Setting auth token:", key);
+  console.log("Setting plugin secret key:", key);
   pluginSecretKey = key;
+  if (key) {
+    localStorage.setItem('app-plugin-secret-key', key);
+  } else {
+    localStorage.removeItem('app-plugin-secret-key');
+  }
 };
 
 // Create an axios instance with custom configuration

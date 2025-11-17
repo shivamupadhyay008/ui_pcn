@@ -4,7 +4,7 @@ import NewsView from "./components/NewsView";
 import SpiritualTracker from "./components/SpiritualTracker";
 import LoginModal from "./auth/login";
 import { setAuthToken, setPluginSecretKey } from "./api/axiosinstance";
-import { getUserToken } from "./common/constants/storage";
+import { getUserToken, getPluginSecretKey } from "./common/constants/storage";
 
 function UnauthenticatedMessage() {
   return (
@@ -45,11 +45,15 @@ useLayoutEffect(() => {
 }, []);
 
   useEffect(() => {
-    // Check for standalone login token on app load
+    // Check for standalone login token and plugin secret key on app load
     const checkStandaloneAuth = async () => {
       const token = await getUserToken();
       if (token) {
         setAuthToken(token);
+      }
+      const pluginKey = await getPluginSecretKey();
+      if (pluginKey) {
+        setPluginSecretKey(pluginKey);
       }
     };
 

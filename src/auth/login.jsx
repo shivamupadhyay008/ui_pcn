@@ -6,7 +6,7 @@ import { login } from "../services/auth";
 
 import { isValidEmail, isValidPassword } from "../common/constants/storage";
 
-import { setAuthToken } from "../api/axiosinstance";
+import { setAuthToken, setPluginSecretKey } from "../api/axiosinstance";
 
 export const APP_LOGIN_TOKEN = "app-x-token";
 
@@ -105,6 +105,9 @@ export default function LoginModal({ open, onClose, actionCb = () => {} }) {
         window._token = res?.token;
 
         setAuthToken(res?.token);
+        if (res?.pluginSecretKey) {
+          setPluginSecretKey(res?.pluginSecretKey);
+        }
 
         handleClose();
 
