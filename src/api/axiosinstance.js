@@ -6,10 +6,12 @@ let pluginSecretKey = null;
 
 // Functions to set the tokens and keys
 export const setAuthToken = (token) => {
+  console.log("Setting auth token:", token);
   authToken = token;
 };
 
 export const setPluginSecretKey = (key) => {
+  console.log("Setting auth token:", key);
   pluginSecretKey = key;
 };
 
@@ -31,6 +33,7 @@ axiosInstance.interceptors.request.use(
     // if (authToken) {
       // config.headers.Authorization = `Bearer txlnfypcki`;
     // }
+    console.log("Attaching auth token to request:", authToken, pluginSecretKey);
     
     if (authToken) {
       config.headers['ark-plugin-jwt-key'] = authToken;
