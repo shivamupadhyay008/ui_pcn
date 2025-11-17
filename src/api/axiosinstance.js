@@ -6,9 +6,9 @@ let pluginSecretKey = null;
 
 // Functions to set the tokens and keys
 export const setAuthToken = (token) => {
-  console.log("Setting auth token:", token);
-  authToken = token;
   if (token) {
+    console.log("Setting auth token:", token);
+    authToken = token;
     localStorage.setItem('app-x-token', token);
   } else {
     localStorage.removeItem('app-x-token');
@@ -16,9 +16,9 @@ export const setAuthToken = (token) => {
 };
 
 export const setPluginSecretKey = (key) => {
-  console.log("Setting plugin secret key:", key);
-  pluginSecretKey = key;
   if (key) {
+    console.log("Setting plugin secret key:", key);
+    pluginSecretKey = key;
     localStorage.setItem('app-plugin-secret-key', key);
   } else {
     localStorage.removeItem('app-plugin-secret-key');
