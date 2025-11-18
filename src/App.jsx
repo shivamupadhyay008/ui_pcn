@@ -102,8 +102,8 @@ useEffect(() => {
 
         {isAuthenticated ? (
           <Routes>
-            <Route path="/" element={<NewsView />} />
-            <Route path="/spiritual-tracker" element={<SpiritualTracker />} />
+            <Route path="/" element={<SpiritualTracker />} />
+            <Route path="/spiritual-tracker" element={<NewsView />} />
             <Route path="/login" element={<LoginModal open={true} onClose={() => navigate("/")} />} />
           </Routes>
         ) : (
