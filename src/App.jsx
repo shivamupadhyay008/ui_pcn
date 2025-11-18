@@ -19,10 +19,10 @@ function UnauthenticatedMessage() {
 function App() {
   const navigate = useNavigate();
   const location = useLocation();
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
 
-useLayoutEffect(() => {
+useEffect(() => {
 
   const handleMessage = (event) => {
     console.log("Received message:", event.data);
